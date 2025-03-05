@@ -8,7 +8,7 @@
     "start": "node server.js",
     "dev": "node server.js"
   },
-  "author": "mauren",
+  "author": "Cavin",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2",
@@ -20,7 +20,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MaurenK/Maury-ToDo-List.git"
+    "url": "git+https://github.com/calvinkhoza/TO-DO-appl.git"
   },
   "keywords": [],
   "bugs": {

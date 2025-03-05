@@ -301,3 +301,105 @@ function updateClock() {
 // Update clock every second
 setInterval(updateClock, 1000);
 updateClock(); // Initial call to display clock immediately
+// Function to display the current time
+function updateClock() {
+  const clockElement = document.getElementById('clock');
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+// Update the clock every second
+setInterval(updateClock, 1000);
+
+// Initialize the clock immediately on page load
+updateClock();
+
+// Show Sign-In Form
+function showSignInForm() {
+  document.getElementById('signUpForm').style.display = 'none';
+  document.getElementById('forgotPasswordForm').style.display = 'none';
+  document.getElementById('signInForm').style.display = 'block';
+}
+
+// Show Sign-Up Form
+function showSignUpForm() {
+  document.getElementById('signInForm').style.display = 'none';
+  document.getElementById('forgotPasswordForm').style.display = 'none';
+  document.getElementById('signUpForm').style.display = 'block';
+}
+
+// Show Forgot Password Form
+function showForgotPasswordForm() {
+  document.getElementById('signInForm').style.display = 'none';
+  document.getElementById('forgotPasswordForm').style.display = 'block';
+}
+
+// Handle Sign Up
+function signUp() {
+  const username = document.getElementById('signUpUsername').value;
+  const email = document.getElementById('signUpEmail').value;
+  const password = document.getElementById('signUpPassword').value;
+
+  if (!username || !email || !password) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  const userExists = users.find(user => user.username === username);
+
+  if (userExists) {
+    alert('Username already taken!');
+    return;
+  }
+
+  const newUser = { username, email, password };
+  users.push(newUser);
+  localStorage.setItem('users', JSON.stringify(users));
+
+  alert('Sign Up successful! You can now sign in.');
+  showSignInForm();
+}
+
+// Handle Sign In
+function signIn() {
+  const username = document.getElementById('signInUsername').value;
+  const password = document.getElementById('signInPassword').value;
+
+  if (!username || !password) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  const user = users.find(user => user.username === username && user.password === password);
+
+  if (!user) {
+    alert('Invalid username or password!');
+    return;
+  }
+
+  localStorage.setItem('signedInUser', JSON.stringify(user));
+  alert('Sign In successful!');
+  showTodoSection();
+}
+
+// Show To-Do Section after successful sign-in
+function showTodoSection() {
+  document.getElementById('signInForm').style.display = 'none';
+  document.getElementById('todoSection').style.display = 'block';
+}
+
+// Handle Forgot Password
+function resetPassword() {
+  const email = document.getElementById('forgotPasswordEmail').value;
+  if (email) {
+    alert('Password reset link sent to ' + email);
+    showSignInForm();
+  } else {
+    alert('Please enter your email address.');
+  }
+}
