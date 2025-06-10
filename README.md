@@ -1,5 +1,6 @@
  ## To-Do List Application
 A simple and interactive To-Do list web application designed to help users manage their tasks efficiently with integrated user authentication and timely reminders.
+![Todo listPreview](landing-page (2)) 
 
 ## ✨ Features
 ### 🔒 User Authentication :
